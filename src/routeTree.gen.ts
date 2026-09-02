@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as GamesRouteImport } from './routes/games'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
+import { Route as OpportunityIdRouteImport } from './routes/opportunity.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesRoute = GamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunityIdRoute = OpportunityIdRouteImport.update({
+  id: '/opportunity/$id',
+  path: '/opportunity/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/games': typeof GamesRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
+  '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/games': typeof GamesRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
+  '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/games': typeof GamesRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
+  '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/compare'
+    | '/games'
+    | '/opportunities'
+    | '/research'
+    | '/watchlist'
+    | '/opportunity/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/compare'
+    | '/games'
+    | '/opportunities'
+    | '/research'
+    | '/watchlist'
+    | '/opportunity/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/games'
+    | '/opportunities'
+    | '/research'
+    | '/watchlist'
+    | '/opportunity/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
+  GamesRoute: typeof GamesRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
+  ResearchRoute: typeof ResearchRoute
+  WatchlistRoute: typeof WatchlistRoute
+  OpportunityIdRoute: typeof OpportunityIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games': {
+      id: '/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof GamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunity/$id': {
+      id: '/opportunity/$id'
+      path: '/opportunity/$id'
+      fullPath: '/opportunity/$id'
+      preLoaderRoute: typeof OpportunityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
+  GamesRoute: GamesRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
+  ResearchRoute: ResearchRoute,
+  WatchlistRoute: WatchlistRoute,
+  OpportunityIdRoute: OpportunityIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
