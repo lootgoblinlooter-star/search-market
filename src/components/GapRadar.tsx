@@ -29,8 +29,9 @@ export function GapRadar({ points }: { points: Opportunity[] }) {
         </span>
 
         {points.map((p) => {
-          const left = Math.min(94, Math.max(3, p.competition));
-          const top = Math.min(92, Math.max(4, 100 - p.demand));
+          // Stretch the plotted ranges (competition 15-95, demand 55-95) across the full chart.
+          const left = Math.min(94, Math.max(3, ((p.competition - 15) / 80) * 100));
+          const top = Math.min(90, Math.max(4, 100 - ((p.demand - 55) / 40) * 100));
           const hot = p.verdict === "gap";
           const dead = p.demand < 55;
           return (
