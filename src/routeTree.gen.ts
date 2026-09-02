@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as ResearchRouteImport } from './routes/research'
@@ -18,6 +19,11 @@ import { Route as OpportunityIdRouteImport } from './routes/opportunity.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesRoute = GamesRouteImport.update({
@@ -43,6 +49,7 @@ const OpportunityIdRoute = OpportunityIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
@@ -66,12 +75,24 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/games' | '/opportunities' | '/research' | '/opportunity/$id'
+    | '/'
+    | '/compare'
+    | '/games'
+    | '/opportunities'
+    | '/research'
+    | '/opportunity/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/games' | '/opportunities' | '/research' | '/opportunity/$id'
+  to:
+    | '/'
+    | '/compare'
+    | '/games'
+    | '/opportunities'
+    | '/research'
+    | '/opportunity/$id'
   id:
     | '__root__'
     | '/'
+    | '/compare'
     | '/games'
     | '/opportunities'
     | '/research'
@@ -80,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
   GamesRoute: typeof GamesRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   ResearchRoute: typeof ResearchRoute
@@ -93,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games': {
@@ -128,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
   GamesRoute: GamesRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   ResearchRoute: ResearchRoute,
