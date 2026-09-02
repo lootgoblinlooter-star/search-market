@@ -14,6 +14,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
 import { Route as OpportunityIdRouteImport } from './routes/opportunity.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpportunityIdRoute = OpportunityIdRouteImport.update({
   id: '/opportunity/$id',
   path: '/opportunity/$id',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
   '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
   '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/games': typeof GamesRoute
   '/opportunities': typeof OpportunitiesRoute
   '/research': typeof ResearchRoute
+  '/watchlist': typeof WatchlistRoute
   '/opportunity/$id': typeof OpportunityIdRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/opportunities'
     | '/research'
+    | '/watchlist'
     | '/opportunity/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/opportunities'
     | '/research'
+    | '/watchlist'
     | '/opportunity/$id'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/opportunities'
     | '/research'
+    | '/watchlist'
     | '/opportunity/$id'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   GamesRoute: typeof GamesRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   ResearchRoute: typeof ResearchRoute
+  WatchlistRoute: typeof WatchlistRoute
   OpportunityIdRoute: typeof OpportunityIdRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/opportunity/$id': {
       id: '/opportunity/$id'
       path: '/opportunity/$id'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   GamesRoute: GamesRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   ResearchRoute: ResearchRoute,
+  WatchlistRoute: WatchlistRoute,
   OpportunityIdRoute: OpportunityIdRoute,
 }
 export const routeTree = rootRouteImport
