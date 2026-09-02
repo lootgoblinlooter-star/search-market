@@ -77,14 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Loot Scope — Roblox Market Gap Finder" },
+      {
+        name: "description",
+        content: "Find Roblox game markets with high demand and low competition.",
+      },
+      { name: "author", content: "Loot Scope" },
+      { property: "og:title", content: "Loot Scope — Roblox Market Gap Finder" },
+      {
+        property: "og:description",
+        content: "Find Roblox game markets with high demand and low competition.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
